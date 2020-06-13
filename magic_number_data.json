@@ -1,0 +1,16 @@
+[
+{"magic_value":"89504e47", "file_type":"PNG"},
+{"magic_value":"ffd8ffe0", "file_type":"JPG"},
+{"magic_value":"ffd8ffe1", "file_type":"JPG"},
+{"magic_value":"ffd8ffe2", "file_type":"JPG"},
+{"magic_value":"ffd8ffe3", "file_type":"JPG"},
+{"magic_value":"ffd8ffe1", "file_type":"SPIFF"},
+{"magic_value":"49492a00", "file_type":"TIFF"},
+{"magic_value":"4d4d002a", "file_type":"TIFF"},
+{"magic_value":"4d4d002b", "file_type":"TIFF"},
+{"magic_value":"25504446", "file_type":"PDF"},
+{"magic_value":"504b0304", "file_type":"MS Office Open XML Format Document"},
+{"magic_value":"664c6143", "file_type":"FLAC"},
+{"magic_value":"000001BA", "file_type":"DVD Video File"},
+{"magic_value":"000001B3", "file_type":"MPEG Video File"}
+]
