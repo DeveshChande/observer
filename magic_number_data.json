@@ -12,5 +12,20 @@
 {"magic_value":"504b0304", "file_type":"MS Office Open XML Format Document"},
 {"magic_value":"664c6143", "file_type":"FLAC"},
 {"magic_value":"000001BA", "file_type":"DVD Video File"},
-{"magic_value":"000001B3", "file_type":"MPEG Video File"}
+{"magic_value":"000001B3", "file_type":"MPEG Video File"},
+{"magic_value":"cafebabe", "file_type":".CLASS File"},
+{"magic_value":"47494638", "file_type":"GIF"},
+{"magic_value":"52494646", "file_type":"RIFF"},
+{"magic_value":"7F454C46", "file_type":"ELF (Linux)"},
+{"magic_value":"38425053", "file_type":"Photoshop Graphics"},
+{"magic_value":"d7cdc69a", "file_type":"Windows Meta File"},
+{"magic_value":"4d546864", "file_type":"MIDI File"},
+{"magic_value":"6d6f6f76", "file_type":"MOV Video File"},
+{"magic_value":"504b0304", "file_type":"PKZip"},
+{"magic_value":"4d534346", "file_type":"CAB Installer File"},
+{"magic_value":"425047fb", "file_type":"Better Portable Graphics (BPG)"},
+{"magic_value":"43723234", "file_type":"Google Chrome Extension"},
+{"magic_value":"464c5601", "file_type":"Flash Video File"},
+{"magic_value":"47504154", "file_type":"GIMP File"},
+{"magic_value":"5f27a889", "file_type":"JAR Archive"}
 ]
