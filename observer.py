@@ -41,7 +41,7 @@ def compute_ssdeep_hash(file_name):
 
 def virus_total_check(md5_result, file_name):
     url = f'https://www.virustotal.com/api/v3/files/{md5_result}'
-    headers = {'x-apikey': '8cf82697c4dd2375d4c50c4be8447788276b654dc57a1c224a70821092d1c03d'}
+    headers = {'x-apikey': ''}
     r = requests.get(url, headers=headers)
     analysis = r.json()
 
