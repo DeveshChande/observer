@@ -3,6 +3,8 @@ import hashlib
 import json
 import magic
 import pefile
+import pprint
+import pymongo
 import sys
 import os
 import requests
@@ -41,7 +43,7 @@ def compute_ssdeep_hash(file_name):
 
 def virus_total_check(md5_result, file_name):
     url = f'https://www.virustotal.com/api/v3/files/{md5_result}'
-    headers = {'x-apikey': ''}
+    headers = {'x-apikey': '8cf82697c4dd2375d4c50c4be8447788276b654dc57a1c224a70821092d1c03d'}
     r = requests.get(url, headers=headers)
     analysis = r.json()
 
@@ -158,6 +160,20 @@ def pe_generate_report(file_name, file_size, md5_result, sha1_result, sha256_res
     with open(f'{sha256_result}_report.json', 'w') as json_file:
         json.dump(final_report_dict, json_file, indent=4)
 
+def check_database(md5_result, sha1_result, sha256_result):
+    client = MongoClient('localhost', 27017)
+    signature_database = client['signature_database']
+    md5_collection = signature_database.md5_collection
+    sha1_collection = signature_database.sha1_collection
+    sha256_collection = signature_database.sha256_collection
+    imphash_collection = signature_database.imphash_collection
+
+    mongodb_md5_result = md5_collection.find_one({'hash':f'{md5_result}'})
+    mongodb_sha1_result = sha1_collection.find_one({'hash':f'{sha1_result}'})
+    mongodb_sha256_result = sha256_collection.find_one({'hash':f'{sha256_result}'})
+    mongodb_imphash_result = imphash_collection.find_one({'hash':f'{imphash_result}'})
+    if (mongodb_md5_result or mongodb_sha1_result or mongodb_sha256_result or mongodb_imphash_result):
+        print('[*]Malicious File Detected!')
 
 if __name__ == "__main__":
 
@@ -172,3 +188,4 @@ if __name__ == "__main__":
     if 'PE32' in magic_result:
         pe_attribute_list = pefunc(file_name)
         pe_generate_report(file_name, file_size, md5_result, sha1_result, sha256_result, pe_attribute_list, virustotal_report_object)
+    check_database(md5_result, sha1_result, sha256_result)
