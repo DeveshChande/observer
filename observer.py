@@ -46,7 +46,6 @@ def virus_total_check(md5_result, file_name):
     headers = {'x-apikey': ''}
     r = requests.get(url, headers=headers)
     analysis = r.json()
-
     report_dict={
     "last_analysis_date": analysis["data"]["attributes"]["last_analysis_date"],
     "harmless": analysis["data"]["attributes"]["last_analysis_stats"]["harmless"],
@@ -161,7 +160,7 @@ def pe_generate_report(file_name, file_size, md5_result, sha1_result, sha256_res
         json.dump(final_report_dict, json_file, indent=4)
 
 def check_database(md5_result, sha1_result, sha256_result):
-    client = MongoClient('localhost', 27017)
+    client = pymongo.MongoClient('localhost', 27017)
     signature_database = client['signature_database']
     md5_collection = signature_database.md5_collection
     sha1_collection = signature_database.sha1_collection
@@ -171,9 +170,11 @@ def check_database(md5_result, sha1_result, sha256_result):
     mongodb_md5_result = md5_collection.find_one({'hash':f'{md5_result}'})
     mongodb_sha1_result = sha1_collection.find_one({'hash':f'{sha1_result}'})
     mongodb_sha256_result = sha256_collection.find_one({'hash':f'{sha256_result}'})
-    mongodb_imphash_result = imphash_collection.find_one({'hash':f'{imphash_result}'})
-    if (mongodb_md5_result or mongodb_sha1_result or mongodb_sha256_result or mongodb_imphash_result):
+    #mongodb_imphash_result = imphash_collection.find_one({'hash':f'{imphash_result}'})
+    if (mongodb_md5_result or mongodb_sha1_result or mongodb_sha256_result):
         print('[*]Malicious File Detected!')
+    else:
+        print('No malicious pattern matched in MongoDB.')
 
 if __name__ == "__main__":
 
